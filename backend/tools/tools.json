@@ -1,0 +1,37 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Gets the weather data for a chosen location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "param1": {
+                        "type": "string",
+                        "description": "Name of the place you want to get the weather for"
+                    }
+                },
+                "required": ["param1"]
+            }
+        } 
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_location_info",
+            "description": "Looks up geographic metadata for a place by name. Returns coordinates, timezone, country, county, municipality, elevation, population, and feature type.\n\nUse when the user asks about a specific location's details, coordinates, or geographic context.\nDo NOT use for weather, directions, or if the location is already in context.\n\nParameters:\n- place_name (required): the name of the place to look up",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "param1": {
+                        "type": "string",
+                        "description": "Name of the place you want to get the data about"
+                    }
+                },
+                "required": ["param1"]
+            }
+        } 
+    }    
+    
+]
