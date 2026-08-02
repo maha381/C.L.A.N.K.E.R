@@ -40,17 +40,12 @@ def sendRequest(messages: list[dict[str, Any]], tools: list[dict]) -> Iterator[A
         model="deepseek-v4-flash"    
     )
 
-    for chunk in response:
-        yield chunk
-
-def parseOutput():
-
     content = ""
     #for each token in the response
 
 
     toolsthingmhm = {}
-    for chunk in sendRequest(messages=messages, tools=tools):
+    for chunk in response:
 
         delta = chunk.choices[0].delta
 
