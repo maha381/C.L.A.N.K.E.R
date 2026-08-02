@@ -5,6 +5,7 @@ from openai import OpenAI
 import os
 import copy
 from dotenv import load_dotenv
+from typing import Any, Iterator
 
 load_dotenv()
 DeepseekAPIK=os.getenv("DEEPSEEK_API_KEY")
@@ -20,9 +21,9 @@ messages = [{"role": "system", "content": f"{systemPrompt}"},
 
 
 
-def sendRequest(messages, tools):
+def sendRequest(messages: list[dict[str, Any]], tools: list[dict]) -> Iterator[Any]:
 
-    content = ""
+
 
     client = OpenAI(
         #http://0.0.0.0:8080/v1
@@ -39,17 +40,26 @@ def sendRequest(messages, tools):
         model="deepseek-v4-flash"    
     )
 
-
-    #for each token in the response
-    toolsthingmhm = {}
     for chunk in response:
+        yield chunk
+
+def parseOutput():
+
+    content = ""
+    #for each token in the response
+
+
+    toolsthingmhm = {}
+    for chunk in sendRequest(messages=messages, tools=tools):
 
         delta = chunk.choices[0].delta
+
 
         #response
         if delta.content:
             print(f"\033[92m{delta.content:}\033[0m", end="", flush=True)
             content += delta.content
+
         #if reasoning content, print it    
         elif getattr(delta, 'reasoning_content', None):
             print(f"\033[91m{getattr(delta, 'reasoning_content', None)}\033[0m", end="", flush=True)
