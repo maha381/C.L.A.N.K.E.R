@@ -11,8 +11,8 @@ voice_state = tts_model.get_state_for_audio_prompt(
     # or "hf://kyutai/tts-voices/expresso/ex01-ex02_default_001_channel2_198s.wav"
 )
 
-audio = tts_model.generate_audio(voice_state, "Hello how are you doing")
+audio = tts_model.generate_audio_stream(voice_state, "Hello how are you doing")
 # Audio is a 1D torch tensor containing PCM data.
-scipy.io.wavfile.write(f"output{count}.wav", tts_model.sample_rate, audio.numpy())
+scipy.io.wavfile.write(f"output1.wav", tts_model.sample_rate, audio.numpy())
 
 
