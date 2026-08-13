@@ -1,0 +1,25 @@
+{
+    "llama_cpp": {
+        "binary_path": "/home/maha/llama.cpp/build/bin/llama-server",
+        "address": "127.0.0.1",
+        "port": 8080
+    },
+
+    "Jarvis": {
+        "local": true,
+        "models": {
+            "local_model": "qwen3.5-9b",
+            "cloud_model": "deepseek-v4-flash",
+
+            "profile": "assistant",
+
+            "system_prompt": "",
+
+            "parallel_tool_calls": true,
+            "stream": true,
+            "max_tokens": 512
+        }
+
+    }
+
+}
