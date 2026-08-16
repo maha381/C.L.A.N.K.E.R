@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 @app.post("/chat")
-async def root():
+def root():
     for chunk in orchastration():
         yield chunk
 

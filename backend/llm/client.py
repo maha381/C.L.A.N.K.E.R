@@ -1,5 +1,6 @@
 
 from openai import OpenAI
+
 import os
 from dotenv import load_dotenv
 from typing import Any, Iterator
@@ -8,7 +9,7 @@ load_dotenv()
 DeepseekAPIK=os.getenv("DEEPSEEK_API_KEY")
 
 
-def sendRequest(messages: list[dict[str, Any]], tools: list[dict] | None = None) -> Iterator[Any]:
+def sendRequest(messages: list[dict[str, Any]], tools: list[dict] | None = None):
     client = OpenAI(
         #http://0.0.0.0:8080/v1
         base_url="https://api.deepseek.com",
