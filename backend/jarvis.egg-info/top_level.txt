@@ -2,6 +2,7 @@ api
 db
 llm
 llm_server
+mcp
 tools
 utils
 voice

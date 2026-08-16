@@ -15,19 +15,22 @@ class MCPClient:
             command,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
-            text=True)
+            text=True,
+            bufsize=1,
+        )
 
 
     def send(self, message_dict):
-        json_str = json.dumps(message_dict)
-        self.process.stdin.write(json_str + "\n")
+        self.process.stdin.write(json.dumps(message_dict) + "\n")
         self.process.stdin.flush()
 
 
     def receive(self):
         line = self.process.stdout.readline()
-        line_dict = json.loads(line)
-        return line_dict
+        return json.loads(line)
+
+
+
 
 
 

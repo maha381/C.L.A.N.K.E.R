@@ -2,7 +2,8 @@ from dataclasses import dataclass
 import json
 from pathlib import Path
 
-from client import MCPClient
+from mcp.client import MCPClient
+
 
 
 @dataclass
@@ -17,16 +18,19 @@ class tools_data:
         tool_registry = {}
         tool_list = []
 
-        MCP_servers = json.loads((Path(__file__).parent / "mcp_servers.json").read_text())
-        for server, command in MCP_servers.items():
+        servers = json.loads((Path(__file__).parent / "mcp_servers.json").read_text())
+
+        for server, command in servers.items():
             client = MCPClient()
             clients[server] = client
 
             client.connect(command)
+            client.initialize()
             tools = client.tools_list()
-            tool_list.append(t for t in tools["result"]["tools"])
-            #print(tools)
-            tool_registry = {tool["name"]: server for tool in tools["result"]["tools"]}
+
+            tool_list.extend(tools["result"]["tools"])
+            #print(tool_list)
+            tool_registry.update({tool["name"]: server for tool in tools["result"]["tools"]})
 
 
         return cls(
@@ -45,7 +49,9 @@ def get_tools_data():
     return _tools
 
 
+
+
 if __name__ == "__main__":
     _tools = get_tools_data()
 
-    print(_tools.tool_registry)
+    print(_tools.tool_list)
