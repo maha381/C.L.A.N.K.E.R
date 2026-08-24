@@ -7,13 +7,6 @@ import json
 
 #thing = get_tools_data()
 
-
-thing = get_tools_data()
-print("abc")
-print(thing.tool_registry)
-print(thing.clients)
-
-
 def dispatch(toolcall_list):
     tools_data = get_tools_data()
 

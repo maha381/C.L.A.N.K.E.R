@@ -8,9 +8,9 @@ from mcp.client import MCPClient
 
 @dataclass
 class tools_data:
-    clients: dict
-    tool_registry: dict
-    tool_list: list
+    clients: dict # all the objects connected to each mcp client
+    tool_registry: dict # all tools and which server they belong too
+    tool_list: list # list of all tools with descriptions and requirements/params
 
     @classmethod
     def startup(cls):
@@ -18,40 +18,42 @@ class tools_data:
         tool_registry = {}
         tool_list = []
 
-        servers = json.loads((Path(__file__).parent / "mcp_servers.json").read_text())
+        servers = json.loads((Path(__file__).parent / "mcp_servers.json").read_text()) # all the mcp servers , prolly gonna make a more dynamic thing in the future 
 
         for server, command in servers.items():
-            client = MCPClient()
+            client = MCPClient() # creates an object for each mcp server
             clients[server] = client
 
+            
             client.connect(command)
             client.initialize()
             tools = client.tools_list()
 
             tool_list.extend(tools["result"]["tools"])
-            #print(tool_list)
+
             tool_registry.update({tool["name"]: server for tool in tools["result"]["tools"]})
 
 
         return cls(
-            clients=clients,
-            tool_registry=tool_registry,
-            tool_list=tool_list
+            clients=clients,    #all the objects connected to each mcp client
+            tool_registry=tool_registry, # all tools and which server they belong too
+            tool_list=tool_list # list of all tools with descriptions and requirements/params
         )
 
 
-_tools = None
+tools = None
 
+#easily importable function with the tools_data (clients, tool_registry and tool_list)
 def get_tools_data():
-    global _tools
-    if _tools is None:
-        _tools = tools_data.startup()
-    return _tools
+    global tools
+    if tools is None:
+        tools = tools_data.startup()
+    return tools
 
 
 
 
 if __name__ == "__main__":
-    _tools = get_tools_data()
+    tools = get_tools_data()
 
-    print(_tools.tool_list)
+    print(tools.tool_list)
