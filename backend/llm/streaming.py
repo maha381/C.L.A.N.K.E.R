@@ -5,19 +5,6 @@ from dataclasses import dataclass
 
 from llm.client import sendRequest
 
-class color:
-    DARK_GRAY = '\033[90m'
-    WHITE = '\033[97m'
-    RED = '\033[31m'
-    GREEN = '\033[32m'
-    YELLOW = '\033[33m'
-    BLUE = '\033[34m'
-    MAGENTA = '\033[35m'
-    CYAN = '\033[36m'
-    RESET = '\033[0m'
-
-
-
 #systemPrompt = (Path(__file__).parent.parent.parent / "systemprompts/Jarvis-v2.md").read_text(encoding="utf-8")
 
 #tools = json.loads((Path(__file__).parent.parent /  "tools/tools.json").read_text(encoding="utf-8"))
@@ -64,7 +51,7 @@ def parseOutput(messages, tools):
 
 
 
-    # returns the empty ones to make it easier to sort later
+    # returns the empty ones to make it easier to handle later
         yield {
             "content": getattr(delta, "content", None),
             "reasoning_content": getattr(delta, "reasoning_content", None),

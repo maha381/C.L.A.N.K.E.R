@@ -3,13 +3,22 @@ import json
 from pathlib import Path
 from dataclasses import dataclass
 
+"""
+all the stuff needed to call, connect, initialize mcp servers
+"""
+
+
+
+
+
+# class with the stuff needed for each mcp client
 class MCPClient:
     def __init__(self):
         self.process = None
         self.next_id = 1
         self.tools = {}
 
-
+    # connects to the mcp server and saves the connection to the client
     def connect(self, command):
         self.process = subprocess.Popen(
             command,
@@ -19,7 +28,7 @@ class MCPClient:
             bufsize=1,
         )
 
-
+    # function to send to the mcp server
     def send(self, message_dict):
         self.process.stdin.write(json.dumps(message_dict) + "\n")
         self.process.stdin.flush()
@@ -34,7 +43,7 @@ class MCPClient:
 
 
 
-
+    # initializes the server connection
     def initialize(self):
         current_id = self.next_id
         self.next_id += 1
@@ -57,6 +66,7 @@ class MCPClient:
         self.notifications_initialized()
 
 
+    # tells the server the intialization was sucessful
     def notifications_initialized(self):
         notification_msg = {
             "jsonrpc": "2.0",
@@ -66,6 +76,7 @@ class MCPClient:
         self.send(notification_msg)
 
 
+    # ask the server for a list of its tools
     def tools_list(self):
         tools_msg = {
             "jsonrpc": "2.0",
@@ -79,6 +90,7 @@ class MCPClient:
         return reply
 
 
+    # calls a tool from the server
     def tools_call(self, name, arguments):
         tool_msg = {
             "jsonrpc": "2.0",
