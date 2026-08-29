@@ -1,0 +1,1 @@
+fix whatevers happening rn, cuz i dont know lwk. to make chatting work perfectly from main.py

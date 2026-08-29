@@ -1,0 +1,14 @@
+# Core backend / LLM
+fastapi>=0.141.1
+uvicorn[standard]>=0.30.0
+pydantic>=2.13.5
+openai>=3.6.0
+python-dotenv>=1.2.3
+
+# MCP servers & utilities
+requests>=2.32.0
+
+# Optional: local TTS test (tests/pocketTTS.py)
+# pocket-tts
+# playsound3
+# scipy

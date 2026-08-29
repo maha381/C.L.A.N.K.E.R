@@ -1,0 +1,81 @@
+[
+    {
+        "role": "user", 
+        "content": "call echo tool multiple times with different args"
+    }, 
+    {
+        "role": "assistant", 
+        "content": "I'll call the echo tool multiple times with different arguments. Since these are independent calls, I'll make them all at once.", 
+        "tool_calls": [
+            {
+                "id": "call_00_AwjoQWf9VyKnjnDQgZrN9436",
+                "type": "function", 
+                "function": {
+                    "name": "echo", 
+                    "arguments": "{'text': 'Hello, world!'}"
+                }
+            }, 
+            {
+                "id": "call_01_0SxqovqF8fncljBKDqox6331", 
+                "type": "function", 
+                "function": {
+                    "name": "echo",
+                     "arguments": "{'text': 'Echo test number 2'}"
+                }
+            }, 
+            {
+                "id": "call_02_6uCNYG2sF3wPuCeiOw7m1990", 
+                "type": "function", 
+                "function": {
+                    "name": "echo", 
+                    "arguments": "{'text': 'The quick brown fox jumps over the lazy dog'}"
+                }
+            }, 
+            {
+                "id": "call_03_jdIGq5T1juNKgNzkKPc26821", 
+                "type": "function", 
+                "function": {
+                    "name": "echo", "arguments": "{'text': '12345'}"
+                }
+            }, 
+            {
+                "id": "call_04_kFVdI0w2BCM2S6v32tdV9129", 
+                "type": "function", 
+                "function": {
+                    "name": "echo", 
+                    "arguments": "{'text': 'Goodbye!'}"
+                }
+            }
+        ]
+    }, 
+    {
+        "role": "tool", 
+        "content": [
+            {
+                "role": "tool", 
+                "tool_call_id": "call_00_AwjoQWf9VyKnjnDQgZrN9436", 
+                "content": "{'type': 'text', 'text': 'echo: Hello, world!'}"
+            }, 
+            {
+                "role": "tool", 
+                "tool_call_id": "call_01_0SxqovqF8fncljBKDqox6331", 
+                "content": "{'type': 'text', 'text': 'echo: Echo test number 2'}"
+            }, 
+            {
+                "role": "tool", 
+                "tool_call_id": "call_02_6uCNYG2sF3wPuCeiOw7m1990", 
+                "content": "{'type': 'text', 'text': 'echo: The quick brown fox jumps over the lazy dog'}"
+            }, 
+            {   
+                "role": "tool", 
+                "tool_call_id": "call_03_jdIGq5T1juNKgNzkKPc26821", 
+                "content": "{'type': 'text', 'text': 'echo: 12345'}"
+            }, 
+            {
+                "role": "tool", 
+                "tool_call_id": "call_04_kFVdI0w2BCM2S6v32tdV9129", 
+                "content": "{'type': 'text', 'text': 'echo: Goodbye!'}"
+            }
+        ]
+    }
+]

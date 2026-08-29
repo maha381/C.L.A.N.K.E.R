@@ -1,0 +1,8 @@
+{
+    "deepseek-v4-flash" : {
+        "name": "Deepseek-V4-Flash",
+        "id": "deepseek-v4-flash",
+        "endpoint": "https://api.deepseek.com",
+        "api_key_name": "DEEPSEEK_API_KEY"
+    }
+}
