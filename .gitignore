@@ -1,10 +1,18 @@
+# Secrets — never commit these
+.env
+
+secrets.txt
+
+# Python
 __pycache__/
-*.pyc
-*.gguf
-*.safetensors
+*.py[cod]
+*$py.class
+.venv/
 venv/
 bin/
 lib/
 lib64/
 pyvenv.cfg
 .env
+jarvis.egg-info/  
+locationData.db
