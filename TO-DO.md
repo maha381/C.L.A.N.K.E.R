@@ -1,4 +1,7 @@
 # To-Do List 
+
+    better error handling
+    async
     
     docs
     readme
